@@ -1,0 +1,1 @@
+Hello, I'm Shaid sk, here is some example of read file from js using build in modules.

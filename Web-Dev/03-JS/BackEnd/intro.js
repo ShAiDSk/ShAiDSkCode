@@ -1,0 +1,91 @@
+// console.log("Hello, Shaid!");
+
+
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+//   res.end("Hello, I'm Shaid!");
+  res.end(`<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Date & Time</title>
+      <style>
+          *{
+              margin: 0;
+              padding: 0;
+          }
+          .date{
+              font-size: 23px;
+              color: aqua;
+              background-color: rgb(13, 114, 80);
+              border: 2px solid rgb(0, 0, 0);
+              padding: 34px;
+              margin: 4px;
+              text-align: center;
+          }
+          #CurrentTime{
+              font-weight: bold;
+              color: black;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="date">
+          <h1>Date and Time...</h1>
+          Current Time: <span id="CurrentTime"></span>
+      </div>
+      <script>
+          console.log("Date and Time...");
+          let now = new Date();
+          console.log(now);
+  
+          let dt = new Date(1000);
+          console.log(dt);
+          // let time = new date(Year, Month, Day, hour, minute, second, millisecond)
+          let time = new Date(2333, 0, 13, 6, 3, 4, 34);
+          console.log(time);
+  
+          let year = time.getFullYear();
+          console.log('Year: ', year);
+  
+          let month = time.getMonth();
+          console.log('Month: ', month);
+  
+          let day = time.getDate();
+          console.log('Day: ', day);
+  
+          let hour = time.getHours();
+          console.log('Hour: ', hour);
+  
+          let minute = time.getMinutes();
+          console.log('Minute: ', minute);
+  
+          let second = time.getSeconds();
+          console.log('Second: ', second);
+  
+          let millisecond = time.getMilliseconds();
+          console.log('Millisecond: ', millisecond);
+  
+          time.setDate(5);
+          console.log(time);
+  
+          setInterval(updateTime, 1000);
+          function updateTime(){
+              CurrentTime.innerHTML = new Date();
+          }
+      </script>
+  </body>
+  </html>`);
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});

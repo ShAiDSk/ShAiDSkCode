@@ -1,0 +1,36 @@
+h1{
+    color: navy;
+    text-align: center;
+}
+body{
+    color: cadetblue;
+    background-color: aquamarine;
+}
+div{
+    background-color: azure;
+}
+p{
+    /* background-color: rgb(24, 26, 25); */
+    color:black;
+    /* text-align: center; */
+}
+#red{
+    color: darkblue;
+    background-color:cornflowerblue;
+}
+.blue{
+    background-color: blue;
+    color: wheat;
+}
+.green{
+    background-color: green;
+    color: darkgreen;
+}
+.yellow{
+    background-color: yellow;
+    color: yellowgreen;
+}
+*{
+    margin: 0;
+    padding: 0;
+}

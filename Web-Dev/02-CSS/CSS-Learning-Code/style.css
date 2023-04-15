@@ -1,0 +1,11 @@
+body{
+    background-color: rgb(9, 77, 129);
+    /* background-color: rgb(9, 77, 129); */
+}
+#first{
+    background-color: aqua;
+}
+.bg-blue{
+    background-color: aquamarine;
+    color: chocolate
+}

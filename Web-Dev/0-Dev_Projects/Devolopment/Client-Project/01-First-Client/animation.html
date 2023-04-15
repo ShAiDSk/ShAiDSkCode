@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: consolas;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+        }
+        .scan{
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container .scan .face{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background: url(img/face.png);
+            background-size: 500px;
+        }
+        .container .scan .face::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="scan">
+            <div class="face">
+    
+            </div>
+        </div>
+    </div>
+</body>
+</html>

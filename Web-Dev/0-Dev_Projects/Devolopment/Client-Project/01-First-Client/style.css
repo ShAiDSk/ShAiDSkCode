@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #0f0f0e;
+}
+body{
+    position: relative;
+}
+#logo{
+    position: relative;
+    justify-content: center;
+}
+#image{
+    position: relative;
+    
+}
+.a{
+    height: 10vh;
+    width: 10vw;
+}

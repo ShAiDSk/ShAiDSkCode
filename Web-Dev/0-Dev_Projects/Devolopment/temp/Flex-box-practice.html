@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Box Practice</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            padding: 30px;
+        }
+        li{
+            list-style: none;
+            display: inline;
+            padding: 0 24px;
+        }
+        header{
+            background-color: black;
+            color: white;
+        }
+        .left{
+            height: 80vh;
+            width: 40vw;
+            /* float: left; */
+            background-color: rgb(9, 68, 68);
+        }
+        .right{
+            height: 80vh;
+            width: 40vw;
+            /* float: right; */
+            background-color: rgb(11, 92, 65);
+        }
+        .container{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit sequi odio mollitia impedit repellendus? Vel placeat, consequatur rem sint officia a, laboriosam eaque atque sequi molestias numquam est repudiandae mollitia.</div>
+        <div class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dolores labore voluptatum sed, fuga maxime consequatur. Ab, repellendus dolores ipsa veritatis iure placeat nam ea fuga, eaque nobis cupiditate quo.</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: auto;
+            background-image: url('img/background-image.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #0f0f0e;
+        }
+        section{
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        header{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 30px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo{
+            position: relative;
+            font-size: 2em;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 80px;
+            cursor: pointer;
+        }
+        header img{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        section .links{
+            position: relative;
+            top: 100px;
+            /* display: flex; */
+            font-size: 35px;
+            z-index: 100;
+            list-style: none;
+            margin: 5px;
+            padding: 0 6px;
+            /* background: #fff; */
+            color: #fff;
+            transition: 0.5s;
+        }
+        section .status{
+            position: relative;
+            bottom: 38px;
+            right: 33px;
+        }
+        section .status{
+            position: absolute;
+            z-index: 10;
+            text-align: center;
+            transition: 0.5s;
+            transition-delay: 1s;
+        }
+        section .status h2{
+            position: relative;
+            color: #fff;
+            font-size: 2vw;
+            /* font-weight: 700; */
+            line-height: 0.55em;
+            text-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        section .status h2{
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            background: url(img/back.png);
+            -webkit-background-clip: text;
+            background-position: 0 0;
+            animation: back 20s linear infinite;
+        }
+        @keyframes back{
+            100%{
+                background-position: 2000px 0;
+            }
+        }
+        section .status h2 span{
+            font-size: 2vw;
+            font-weight: 300;
+            letter-spacing: 5px;
+            /* background: #fff; */
+            color: #111;
+            padding: 0 10px;
+            text-shadow: 0 5px 5px rgba(0, 0, 0, 0);
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+        }
+        @media (max-width: 991px) {
+            header{
+                padding: 20px;
+            }
+            section .status h2{
+                font-size: 4vw;
+                right: 80px;
+            }
+            header .logo {
+                width: 58px;
+            }
+            section .status h2 span{
+                font-size: 1em;
+                letter-spacing: 2px;
+                padding: 0 5px;
+            }
+            section .links{
+                top: 111px;
+                /* right: 0%; */
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <header>
+            <a href="/"><img src="img/logo.jpg" class="logo"></a>
+        </header>
+        <div class="status">
+            <h2>&#x7B; <span>Status:</span> COMING SOON &#x7D;</h2>
+        </div>
+        <!-- <img src="img/background-image.png" class="background"> -->
+        <div class="links">
+            <a href="">Twitter</a>
+            <a href="">Discord</a>
+            <a href="">LitePaper</a>
+        </div>
+    </section>
+</body>
+</html>

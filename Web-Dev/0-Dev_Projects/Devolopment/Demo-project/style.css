@@ -1,0 +1,148 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    background-color: aquamarine;
+    margin: 0;
+    overflow-x: hidden
+}
+
+#creator{
+    color: rgb(7, 173, 76);
+    text-align: center;
+    font-size: 22px;
+}
+
+.Align_align__xZPIo {
+    display: flex
+}
+
+.Align_align--horizontal-start__45aS0 {
+    justify-content: flex-start
+}
+
+.Align_align--horizontal-center__0Os9y {
+    justify-content: center
+}
+
+.Align_align--horizontal-end__IO2tO {
+    justify-content: flex-end
+}
+
+.Align_align--vertical-start__ieFLi {
+    align-items: flex-start
+}
+
+.Align_align--vertical-center__ZfEhm {
+    align-items: center
+}
+
+.Align_align--vertical-end__g5E98 {
+    align-items: flex-end
+}
+
+.ComingSoonPage_main__6\+Dgi {
+    /* height: var(--viewport-height); */
+    height: 49.4vw;
+    width: 100vw
+}
+
+/* .ComingSoonPage_mainContent__kJm4V {
+    margin-bottom: 140px;
+    padding: 0 24px
+} */
+
+.ComingSoonPage_title__UkfKN {
+    font-size: 56px;
+    margin-bottom: 42px;
+    text-align: center
+}
+
+.ComingSoonPage_titleEmphasized__Pv4fo {
+    font-size: 90px
+}
+
+.ComingSoonPage_subtitle__EYqfY {
+    font-size: 22px;
+    text-align: center
+}
+
+/* footer start from here */
+.ComingSoonPage_footer__BxdgH {
+    bottom: 0vw;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    padding-bottom: 0.5vw;
+    position: relative;
+    width: 100vw;
+}
+
+.ComingSoonPage_longwoodLabsLogo__3Am-k {
+    margin-bottom: 16vw
+}
+
+.ComingSoonPage_copyright__yaH0g {
+    color: var(--color-text-dimmed);
+    font-family: Poppins;
+    font-size: 0.7vw;
+    font-weight: 400;
+    line-height: 1vw;
+    text-align: center
+}
+
+@media screen and (min-width:600px)and (min-height:600px) {
+    .ComingSoonPage_mainContent__kJm4V {
+        margin-bottom: 170px
+    }
+
+    .ComingSoonPage_title__UkfKN {
+        font-size: 68px;
+        margin-bottom: 51px
+    }
+
+    .ComingSoonPage_titleEmphasized__Pv4fo {
+        font-size: 109px
+    }
+
+    .ComingSoonPage_subtitle__EYqfY {
+        font-size: 27px
+    }
+}
+
+@media screen and (min-width:900px)and (min-height:900px) {
+    .ComingSoonPage_mainContent__kJm4V {
+        margin-bottom: 200px
+    }
+
+    .ComingSoonPage_title__UkfKN {
+        font-size: 80px;
+        margin-bottom: 60px
+    }
+
+    .ComingSoonPage_titleEmphasized__Pv4fo {
+        font-size: 128px
+    }
+
+    .ComingSoonPage_subtitle__EYqfY {
+        font-size: 32px
+    }
+}
+
+.GamePage_gamePage__FUXge,
+.LandingPage_landingPage__sI4l1 {
+    font-size: 50px
+}
+
+.NotFoundPage_notFoundWrapper__Jpzof {
+    align-items: center;
+    display: flex;
+    height: auto;
+    height: var(--viewport-height, auto);
+    justify-content: center;
+    width: 100vw
+}
