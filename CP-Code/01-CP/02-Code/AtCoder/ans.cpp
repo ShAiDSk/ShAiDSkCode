@@ -78,9 +78,9 @@ struct sort_pair_second {
     }
 };
 /*/---------------------------Traces(Debug)----------------------/*/
-#define TRACE
-#define ShAiDSk TRACE
-#ifdef ShAiDSk
+// #define TRACE
+// #define ShAiDSk TRACE
+// #ifdef ShAiDSk
     #define trace(...) __f(#__VA_ARGS__, __VA_ARGS__)
     template <typename Arg1>
     void __f(const char* name, Arg1&& arg1){
@@ -95,15 +95,16 @@ struct sort_pair_second {
             if (cur == ',' && count_open == 0){
                const char* comma = names + k;
                cerr.write(names, len) << " : " << arg1 << " | ";
+            //    cout << " : " << arg1 << " | ";
                __f(comma + 1, args...);
                return;
             }
             len = (cur == ' ' ? len : k + 1);
          }
     }
-#else
-    #define trace(...) 1
-#endif
+// #else
+    // #define trace(...) 1
+// #endif
 /*/---------------------------------RNG--------------------------------/*/
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 inline int64_t random_long(long long l = LLONG_MIN,long long r = LLONG_MAX){
@@ -130,6 +131,7 @@ struct custom_hash { // Credits: https://codeforces.com/blog/entry/62393
 };
 /*/---------------------------Defines && Typedefs----------------------/*/
 #define cerr(x) cout << #x << " : " << (x) << '\n'
+#define out(x) cout << #x << " : " << (x) << ' '
 const long double PI = acos(-1.0); // 3.14159265358979323846264338327950288419716939937510
 #define rall(x)  ((x).rbegin()),((x).rend())
 #define popcount(x) __builtin_popcountll(x)
@@ -269,11 +271,25 @@ struct Help{
     }
 };
 /*/-----------------------------Code begins----------------------------------/*/
-template <typename T> void out(T t){cerr << t << nln;}
+// Set OutPut:
+template <typename T> void cerrCheck(set <T> s){
+    for (auto set = s.begin(); set != s.end(); set++){
+        if (set == s.begin()) out(*set);
+        else cout << *set << ' ';
+    }
+    cout << nln;
+}
+// Vector of array Output: It takes len and vector of array.
+template <typename T> void cerrCheck(int n, vector <T> a[]){
+    for (int i = 0; i < n; i++){
+        for (auto &it : a[i]) cout << it << ' ';
+        cout << nln;
+    }
+}
 template <typename T, typename... Args>
-void out(T t, Args... args){
+void arguments(T t, Args... args){
     cerr << t << nln;
-    out(args...);
+    arguments(args...);
 }
 struct range{
     int l, r, ind;
@@ -320,7 +336,6 @@ vector<int> dp(N);
 vector <int> visited(N, 0);
 vector <int> graph[N]; // Array of vector.
 vector <int> edges[N];
-int ans;
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
     Help H; // Interator codeforces = Interator(5);
@@ -340,7 +355,7 @@ struct Answer{
             return (x > 0 ? 1 : -1);
         };
         int n; cin >> n;
-
+        
     }
 };
 /*/--------------------------------------------------------------------------/*/
