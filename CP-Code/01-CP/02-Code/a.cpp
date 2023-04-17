@@ -272,7 +272,7 @@ struct Help{
 };
 /*/-----------------------------Code begins----------------------------------/*/
 // Set OutPut:
-template <typename T> void cerrCheck(set <T> s){
+template <typename T> void cerrSet(set <T> s){
     for (auto set = s.begin(); set != s.end(); set++){
         if (set == s.begin()) out(*set);
         else cout << *set << ' ';
@@ -280,7 +280,7 @@ template <typename T> void cerrCheck(set <T> s){
     cout << nln;
 }
 // Vector of array Output: It takes len and vector of array.
-template <typename T> void cerrCheck(int n, vector <T> a[]){
+template <typename T> void cerrVectArr(int n, vector <T> a[]){
     for (int i = 0; i < n; i++){
         for (auto &it : a[i]) cout << it << ' ';
         cout << nln;
