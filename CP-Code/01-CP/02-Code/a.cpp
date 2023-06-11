@@ -143,6 +143,8 @@ const int INF = int(1e9);
 const ll INF64 = ll(1e18); // 9223372036854775807LL
 #define IntMax   2147483647 // 2147483647 = INT_MAX
 #define IntMin   -2147483647 // -2147483647 = INT_MIN
+// const int Modint = int(1e9) + 7; // 998244353
+const ll Modint = 998244353;
 #define ef       emplace_front
 #define eb       emplace_back
 #define pf       push_front
@@ -156,7 +158,7 @@ struct Help{
     template<typename dataType>
     void swap(dataType &a, dataType &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
     template<typename dataType>
-    void google(dataType t) {cout << "Case #" << t << ": ";}
+    void Cases(dataType t) {cout << "Case #" << t << ": ";}
     template<typename dataType>
     dataType lcm(dataType a, dataType b) {return ((a * b) / __gcd(a, b));}
     template<typename dataType>
@@ -328,30 +330,37 @@ struct Interator{
     }
 };
 /*/------------------------------Global-Defines-------------------------------/*/
-const int MODi = int(1e9) + 7;
 const int N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
 // int dp[N + 1];
-vector<int> dp(N);
+vector<int> dp(N + 1);
 // vector<vector<int>> dp(N, vector<int>(M + 1, 0));
-vector <int> visited(N, 0);
-vector <int> graph[N]; // Array of vector.
-vector <int> edges[N];
+vector<int> edges[N + 1]; // Array of vector.
+vector<int> graph[N + 1];
+vector<int> visited(N, 0);
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
     Help H; // Interator codeforces = Interator(5);
     int get(char c){
         // return (int(c) - 'a' + 1);
+        // return 'A' <= c and c <= 'Z'; // Check is_uppercase
+        // return '0' <= c and c <= '9'; // Check is_digit
         return (int(c) - '0');
     }
-    // dfs on Graph
+    // dfs on Tree or Graph.
     int dfs(int node, int parent){
         return 0;
     }
-    void Solve(){
+    // Predicate function
+    bool check(void){
+        return false;
+    }
+    void Solve(int tc){
         //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
         // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:∀:x:∀:`}`
-        auto check = [&](int x){
+        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
+        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
+        auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
         int n; cin >> n;
@@ -362,7 +371,8 @@ struct Answer{
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
     int tc = 1; // cin >> tc;
-    while (tc--){Answer a; a.Solve();}
+    // while (tc--){Answer a; a.Solve();}
+    for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }
 /*/ MainFunction() /*/
 signed main(int argc, char **argv, char **envp){

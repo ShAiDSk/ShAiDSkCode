@@ -78,9 +78,9 @@ struct sort_pair_second {
     }
 };
 /*/---------------------------Traces(Debug)----------------------/*/
-#define TRACE
-#define ShAiDSk TRACE
-#ifdef ShAiDSk
+// #define TRACE
+// #define ShAiDSk TRACE
+// #ifdef ShAiDSk
     #define trace(...) __f(#__VA_ARGS__, __VA_ARGS__)
     template <typename Arg1>
     void __f(const char* name, Arg1&& arg1){
@@ -95,15 +95,16 @@ struct sort_pair_second {
             if (cur == ',' && count_open == 0){
                const char* comma = names + k;
                cerr.write(names, len) << " : " << arg1 << " | ";
+            //    cout << " : " << arg1 << " | ";
                __f(comma + 1, args...);
                return;
             }
             len = (cur == ' ' ? len : k + 1);
          }
     }
-#else
-    #define trace(...) 1
-#endif
+// #else
+    // #define trace(...) 1
+// #endif
 /*/---------------------------------RNG--------------------------------/*/
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 inline int64_t random_long(long long l = LLONG_MIN,long long r = LLONG_MAX){
@@ -129,26 +130,33 @@ struct custom_hash { // Credits: https://codeforces.com/blog/entry/62393
     }
 };
 /*/---------------------------Defines && Typedefs----------------------/*/
+#define cerr(x) cout << #x << " : " << (x) << '\n'
+#define out(x) cout << #x << " : " << (x) << ' '
 const long double PI = acos(-1.0); // 3.14159265358979323846264338327950288419716939937510
 #define rall(x)  ((x).rbegin()),((x).rend())
+#define popcount(x) __builtin_popcountll(x)
 #define all(x)   ((x).begin()),((x).end())
 typedef long long ll;
 typedef unsigned long long ull; 
+typedef long double lld;
 const int INF = int(1e9);
 const ll INF64 = ll(1e18); // 9223372036854775807LL
 #define IntMax   2147483647 // 2147483647 = INT_MAX
 #define IntMin   -2147483647 // -2147483647 = INT_MIN
+#define ef       emplace_front
+#define eb       emplace_back
+#define pf       push_front
 #define pb       push_back
+#define ppf      pop_front
 #define ppb      pop_back
-typedef long double lld;
 const lld EPS = 1e-9;
-#define nln  '\n'
+#define nln      '\n'
 /*/---------------------------Helping Functions------------------------------/*/
 struct Help{
     template<typename dataType>
     void swap(dataType &a, dataType &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
     template<typename dataType>
-    void google(dataType t) {cout << "Case #" << t << ": ";}
+    void Cases(dataType t) {cout << "Case #" << t << ": ";}
     template<typename dataType>
     dataType lcm(dataType a, dataType b) {return ((a * b) / __gcd(a, b));}
     template<typename dataType>
@@ -263,11 +271,25 @@ struct Help{
     }
 };
 /*/-----------------------------Code begins----------------------------------/*/
-template <typename T> void out(T t){cerr << t << nln;}
+// Set OutPut:
+template <typename T> void cerrSet(set <T> s){
+    for (auto set = s.begin(); set != s.end(); set++){
+        if (set == s.begin()) out(*set);
+        else cout << *set << ' ';
+    }
+    cout << nln;
+}
+// Vector of array Output: It takes len and vector of array.
+template <typename T> void cerrVectArr(int n, vector <T> a[]){
+    for (int i = 0; i < n; i++){
+        for (auto &it : a[i]) cout << it << ' ';
+        cout << nln;
+    }
+}
 template <typename T, typename... Args>
-void out(T t, Args... args){
+void arguments(T t, Args... args){
     cerr << t << nln;
-    out(args...);
+    arguments(args...);
 }
 struct range{
     int l, r, ind;
@@ -309,44 +331,54 @@ struct Interator{
 const int MODi = int(1e9) + 7;
 const int N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
 // int dp[N + 1];
-vector<int> dp(N);
+vector<int> dp(N + 1);
 // vector<vector<int>> dp(N, vector<int>(M + 1, 0));
-vector <int> visited(N, 0);
-vector <int> graph[N]; // Array of vector.
-vector <int> edges[N];
-int ans;
+vector<int> edges[N + 1]; // Array of vector.
+vector<int> graph[N + 1];
+vector<int> visited(N, 0);
+const error = 1e-9;
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
     Help H; // Interator codeforces = Interator(5);
     int get(char c){
         // return (int(c) - 'a' + 1);
+        // return 'A' <= c and c <= 'Z'; // Check is_uppercase
+        // return '0' <= c and c <= '9'; // Check is_digit
         return (int(c) - '0');
     }
-    // dfs on Graph
+    // dfs on Tree or Graph.
     int dfs(int node, int parent){
-        vector <int> res;
-        for (auto &it : edges[node]){
-            if (it != parent) res.pb(dfs(it, node));
-        }
-        // cout << nln << res << nln;
-        sort(rall(res));
-        if (res.empty()) return 1;
-        ans = max(ans, res[0]);
-        if (res.size() >= 2) ans = max(ans, res[0] + res[1]);
-        return (res[0] + 1);
+        return 0;
     }
-    void Solve(){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:∀:x:∀:`}`
+    // Predicate function
+    bool check(void){
         
+    }
+    void Solve(int tc){
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
+        // g++ aa.cpp -o aa.out; ./aa.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
+        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        auto let = [&](int x){
+            return (x > 0 ? 1 : -1);
+        };
+        // cout << (10 - 1e-9) << nln;
+        double left = 0, right = 1e18;
+        while (left <= right){
+            double min = (left + right) >> 1;
+            if (check(mid, points)){
+                ans = min(ans, mid);
+                right = mid - error;
+            }
+            else left = mid + error;
+        }
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
     int tc = 1; // cin >> tc;
-    while (tc--){Answer a; a.Solve();}
+    // while (tc--){Answer a; a.Solve();}
+    for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }
 /*/ MainFunction() /*/
 signed main(int argc, char **argv, char **envp){

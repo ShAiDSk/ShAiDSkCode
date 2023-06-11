@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    background: url(img/back2.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/* body{
+    min-height: 100vh;
+    background-image: url(img/back2.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} */
+.container{
+    width: 1152pc;
+    max-width: 90%;
+    margin: 0 auto;
+}
+nav{
+    background: #553C9A;
+    color: #fff;
+    padding: 1rem 0;
+}
+section.input{
+    padding-top: 100px;
+}
+body section h2{
+    text-align: center;
+    font-size: 46px;
+    color: #061a10;
+}
+body section .form__wrap{
+    display: flex;
+    justify-content: center;
+}
+body section .input__wrap{
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+body section input{
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    min-width: 600px;
+    outline: none;
+}
+body section button{
+    /* background: #553C9A; */
+    background: #553C9A;
+    color: #fff;
+    height: 100%;
+    font-size: 16px;
+    padding: 0 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+body section.data{
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+}
+body section .loading{
+    display: none;
+}
+body section.data p.definition{
+    font-size: 35px;
+    /* color: #2D3748; */
+    color: white;
+    font-weight: bold;
+    line-height: 1.6;
+}
+.suggested{
+    background: #B794F4;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-top: 5px;
+    display: inline-block;
+}
+body section .audio{
+    margin-top: 20px;
+}
