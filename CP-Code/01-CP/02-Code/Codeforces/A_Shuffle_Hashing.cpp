@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,18 +375,65 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: A. Shuffle Hashing
+            *Location: https://codeforces.com/contest/1278/problem/A
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        string a, b; cin >> a >> b;
+        string temp1 = a, temp2 = b;
+        sort(all(temp1));
+        sort(all(temp2));
+        int n = a.length(), m = b.length();
+        // abacaba
+        //  s1   ans    s2   -> where s1 and s2 random string
+        // zyx aabcaab kjh
+        if (temp1 == temp2){
+            cout << "Yes" << nln;
+            return;
+        }
+        // int ind1 = 0;
+        // for (int i = 0; i < b.length(); i++){
+        //     if (b[i] == a[0]){
+        //         ind1 = i;
+        //         break;
+        //     }
+        // }
+        // // cout << a[n - 1] << nln;
+        // int ind2 = n - 1;
+        // for (int i = b.length() - 1; i >= 0; i--){
+        //     if (b[i] == a[n - 1]){
+        //         ind2 = i;
+        //         break;
+        //     }
+        // }
+        // trace(ind1, ind2); // ind1 : 3 |  ind2 : 8
+        // // ind2--;
+        // string res = b.substr(ind1, ind2);
+        // trace(res);
+        // sort(all(a));
+        // sort(all(res));
+        // cout << (a == res? "Yes" : "No") << nln;
+        vector <int> x(26);
+        for (auto &it : a) ++x[it - 'a'];
+        trace(x);
+        for (int i = 0; i < m; i++){
+            vector <int> y(26);
+            for (auto j = i; j < m; j++){
+                ++y[b[j] - 'a'];
+                if (x == y){
+                    cout << "Yes" << nln;
+                    return;
+                }
+            }
+            // trace(x, y);
+        }
+        cout << "No" << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

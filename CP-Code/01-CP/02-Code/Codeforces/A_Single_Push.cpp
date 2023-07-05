@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,18 +375,58 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: A. Single Push
+            *Location: https://codeforces.com/contest/1253/problem/A
         */ 
         /*/-------------------------------------------------------/*/
         int n; cin >> n;
-        
+        vector <int> a(n), b(n);
+        for (auto &it : a) cin >> it;
+        for (auto &it : b) cin >> it;
+        vector <int> res;
+        res.pb(0);
+        for (int i = 0; i < n; i++){
+            res.pb(b[i] - a[i]);
+        }
+        res.pb(0);
+        // trace(res);
+        int cnt = 0;
+        for (int i = 0; i < n + 1; i++){
+            if (res[i] < 0){
+                cout << "No" << nln;
+                return;
+            }
+            if (res[i] != res[i + 1]){
+                cnt++;
+            }
+        }
+        cout << (cnt <= 2? "Yes" : "No") << nln;
+        /*
+        vector <int> res;
+        res.pb(0);
+        for (int i = 0; i < n; i++){
+            res.pb(b[i] - a[i]);
+        }
+        res.pb(0);
+        // trace(res);
+        auto okay = [&]() -> bool {
+            int cnt = 0;
+            for (int i = 0; i < n + 1; i++){
+                if (res[i] < 0) return false;
+                if (res[i] != res[i + 1]){
+                    cnt++;
+                }
+            }
+            return (cnt <= 2);
+        };
+        cout << (okay()? "Yes" : "No") << nln;
+        */
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

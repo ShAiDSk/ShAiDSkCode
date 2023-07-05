@@ -330,12 +330,12 @@ struct Interator{
     }
 };
 /*/------------------------------Global-Defines-------------------------------/*/
-const int N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
+const int N = 2e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
 // int dp[N + 1];
 vector<int> dp(N + 1);
 // vector<vector<int>> dp(N, vector<int>(M + 1, 0));
 vector<int> edges[N + 1]; // Array of vector.
-vector<int> graph[N + 1];
+vector<int> graph[3 * N + 10];
 vector<int> visited(N, 0);
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
@@ -358,32 +358,43 @@ struct Answer{
         //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
         // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
         // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
-        // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
-        // Predicate function
-        auto Helper = [&]() -> void {
-            return;
-        };
-        // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> int {
-            return 0;
-        };
-        // Disjoint Set Union
-        auto dsu = [&]() -> void {
-            return;
-        };
-        /*/-------------------------------------------------------/*/
-        /*
-            !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
-        */ 
-        /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n; cin >> n; 
+        vector <string> a(n);
+        for (auto &it : a) cin >> it;
+        // trace(a);
+        for (int i = 0; i < n; i++){
+            string x = a[i];
+            // trace(x);
+            // int len = x.length();
+            // bool okay = true;
+            // for (int j = 0; j < len / 2; j++){
+            //     if (x[j] != x[len - j - 1]){
+            //         okay = false;
+            //         break;
+            //     }
+            // }
+            // if (okay){
+            //     cout << "Yes" << nln;
+            //     return;
+            // }
+            for (int j = i + 1; j < n; j++){
+                string temp = x + a[j];
+                trace(temp);
+                int len = temp.length();
+                bool okay = true;
+                for (int k = 0; k < len / 2; k++){
+                    if (temp[k] != temp[len - 1 - k]){
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay) {cout << "Yes" << nln; return;}
+            }
+        }
+        cout << "No" << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

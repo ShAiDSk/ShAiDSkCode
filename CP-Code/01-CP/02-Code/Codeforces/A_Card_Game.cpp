@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -382,14 +379,24 @@ struct Answer{
             *Location: 
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, k1, k2; cin >> n >> k1 >> k2;
+        vector <int> a(k1), b(k2);
+        for (auto &it : a) cin >> it;
+        for (auto &it : b) cin >> it;
+        bool okay = false;
+        for (int i = 0; i < k1; i++){
+            if (a[i] == n){
+                okay = true;
+                break;
+            }
+        }
+        cout << (okay? "Yes" : "No") << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

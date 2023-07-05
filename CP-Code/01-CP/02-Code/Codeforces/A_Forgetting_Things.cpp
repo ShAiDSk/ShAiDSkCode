@@ -346,25 +346,14 @@ struct Answer{
         // return '0' <= c and c <= '9'; // Check is_digit
         return (int(c) - '0');
     }
-    // dfs on Tree or Graph.
-    int dfs(int node, int parent){
-        return 0;
-    }
-    // Predicate function
-    bool check(void){
-        return false;
-    }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
         // Predicate function
-        auto Helper = [&]() -> void {
+        auto check = [&]() -> void {
             return;
         };
         // dfs on Tree or Graph.
@@ -378,12 +367,19 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: A. Forgetting Things
+            *Location: https://codeforces.com/contest/1247/problem/A
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int a, b; cin >> a >> b;
+        // a + 1 = b formulate the equation to make sure that the above condition is mate.
+        // where the in input a is first digit of first forgetting number and
+        //         b is first digit of second forgetting number.
+        int x = 10 * b;
+        // trace(x);
+        if (a == b - 1 || (a == 9 && b == 1)) cout << x - 1 << ' ' << x << nln;
+        else if (a == b) cout << x << ' ' << x + 1 << nln;
+        else cout << -1 << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

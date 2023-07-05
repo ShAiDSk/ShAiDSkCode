@@ -355,13 +355,32 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
+        // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
+        // Predicate function
+        auto Helper = [&]() -> void {
+            return;
+        };
+        // dfs on Tree or Graph.
+        auto dfs = [&](auto dfs, int node, int parent) -> int {
+            return 0;
+        };
+        // Disjoint Set Union
+        auto dsu = [&]() -> void {
+            return;
+        };
+        /*/-------------------------------------------------------/*/
+        /*
+            !Author: ShAiDSk
+            ?Problem_name: 
+            *Location: 
+        */ 
+        /*/-------------------------------------------------------/*/
         int n; cin >> n;
+        
     }
 };
 /*/--------------------------------------------------------------------------/*/

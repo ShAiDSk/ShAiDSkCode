@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,18 +375,33 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B. Fridge Lockers
+            *Location: https://codeforces.com/contest/1255/problem/B
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, m; cin >> n >> m;
+        // Case 1: 2 * m < 2 * n <=> m < n, then we have solution
+        // Case 2: 2 * m = 2 * n <=> m == n, then ans = -1, in a spacial case if n == 2 ans will be -1.
+        // Case 3: 2 * m > 2 * n <=> m > n, for the Tricky Case
+        ll sum = 0;
+        for (int i = 1; i <= n; i++){
+            int x; cin >> x;
+            sum += 2 * x;
+        }
+        if (n > 2 && n == m){
+            cout << sum << nln;
+            for (int i = 1; i < n; i++){
+                cout << i << ' ' << (i + 1) << nln;
+            }
+            cout << n << ' ' << 1 << nln;
+        }
+        else cout << -1 << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

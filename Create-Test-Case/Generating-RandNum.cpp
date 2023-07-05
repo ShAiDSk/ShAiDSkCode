@@ -10,6 +10,7 @@ int main(){
     vector <int> a(n);
     generate(a.begin(), a.end(), randNum);
     // sort(a.begin(), a.end());
+    cout << "Your Array: ";
     out(a);
     return 0;
 }

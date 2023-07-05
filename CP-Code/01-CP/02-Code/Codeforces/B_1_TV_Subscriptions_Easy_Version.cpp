@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,18 +375,68 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B1. TV Subscriptions (Easy Version)
+            *Location: https://codeforces.com/contest/1247/problem/B1
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, k, d; cin >> n >> k >> d;
+        vector <int> a(n);
+        for (auto &it : a) cin >> it;
+        unordered_set<int> s;
+        int low = 0, high = d - 1, ans = IntMax;
+        while (high < n){
+            for (int i = low; i <= high; ++i){
+                s.insert(a[i]);
+            }
+            int temp = s.size();
+            ans = min(ans, temp);
+            low++, high++;
+            s.clear();
+        }
+        cout << ans << nln;
+        // int cnt = 0;
+        // for (int i = 0; i < d; i++){
+        //     if (s.find(a[i]) == s.end()){
+        //         s.insert(a[i]);
+        //         cnt++;
+        //     }
+        // }
+        // trace(s);
+        // s : {2, 1}
+        // s : {3}
+        // s : {4, 6, 8, 10}
+        // s : {6, 2, 9, 5, 4, 1, 3}
+        // cout << cnt << nln;
+        // for (int i = 1; i <= n; i++) cin >> a[i];
+        // some other work
+        // vector<int> unique_Count;
+        // unique_Count.clear();
+        // unique_copy(a.begin(), a.begin()+d, back_inserter(unique_Count));
+        // int uniqueCount = unique_Count.size();
+        // cout << uniqueCount << nln;
+        // a.resize(unique(all(a)) - a.begin());
+        // trace(a);
+        // map <int, int> cnt_episodes;
+        // for (int i = 0; i < k; i++){
+        //     cnt_episodes[a[i]]++;
+        // }
+        // // trace(cnt_episodes);
+        // vector <int> cnt(100 + 1);
+        // for (int i = 1; i <= n; i++){
+        //     cnt[a[i]]++;
+        // }
+        // trace(cnt);
+        // int ans = 0;
+        // for (int i = 1; i <= d; i++){
+        //     if (cnt[i]) ans++;
+        // }
+        // cout << ans << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

@@ -330,13 +330,13 @@ struct Interator{
     }
 };
 /*/------------------------------Global-Defines-------------------------------/*/
-const int N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
+const ll N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
 // int dp[N + 1];
-vector<int> dp(N + 1);
+vector<ll> dp(N + 1);
 // vector<vector<int>> dp(N, vector<int>(M + 1, 0));
-vector<int> edges[N + 1]; // Array of vector.
-vector<int> graph[N + 1];
-vector<int> visited(N, 0);
+// vector<ll> edges[N + 1]; // Array of vector.
+vector<ll> graph[N + 1];
+vector<ll> visited(N, 0);
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
     Help H; // Interator codeforces = Interator(5);
@@ -346,6 +346,14 @@ struct Answer{
         // return '0' <= c and c <= '9'; // Check is_digit
         return (int(c) - '0');
     }
+    // dfs on Tree or Graph.
+    int dfs(int node, int parent){
+        return 0;
+    }
+    // Predicate function
+    bool check(void){
+        return false;
+    }
     void Solve(int tc){
         //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
@@ -353,25 +361,63 @@ struct Answer{
             return (x > 0 ? 1 : -1);
         };
         // Predicate function
-        auto check = [&]() -> void {
+        auto Helper = [&]() -> void {
             return;
         };
         // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> int {
+        auto dfs_on_tree = [&](auto dfs_on_tree, int node, int parent) -> int {
             return 0;
         };
         // Disjoint Set Union
         auto dsu = [&]() -> void {
             return;
         };
-        int n; cin >> n;
-        
+        /*/-------------------------------------------------------/*/
+        /*
+            !Author: ShAiDSk
+            ?Problem_name: D. Apple Tree
+            *Location: https://codeforces.com/contest/1843/problem/D
+        */ 
+        /*/-------------------------------------------------------/*/
+        ll n; cin >> n;
+        vector <ll> edges[n + 1];
+        for (ll i = 0; i < n - 1; i++){
+            ll u, v; cin >> u >> v;
+            edges[u].pb(v);
+            edges[v].pb(u);
+        }
+        ll q; cin >> q;
+        vector <ll> leaf(n + 1, 0);
+        auto dfs = [](auto dfs, ll node, ll parent, vector <ll> &leaf, vector <ll> edges[]) -> void {
+            // cout << node << ' ';
+            bool is_any = false;
+            for (auto it : edges[node]){
+                // if (it != parent){
+                //     is_any = true;
+                //     dfs(dfs, it, node, leaf);
+                //     leaf[node] += leaf[it];
+                // }
+                if (it == parent) continue;
+                is_any = true;
+                dfs(dfs, it, node, leaf, edges);
+                leaf[node] += leaf[it];
+            }
+            if (!is_any) leaf[node]++;
+        };
+        dfs(dfs, 1, -1, leaf, edges);
+        // trace(leaf);
+        while (q--){
+            ll a, b; cin >> a >> b;
+            ll ans = leaf[a] * leaf[b];
+            // trace(leaf[a], leaf[b]);
+            cout << ans << nln;
+        }
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

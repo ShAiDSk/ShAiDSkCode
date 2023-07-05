@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,12 +375,51 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: C. p-binary
+            *Location: https://codeforces.com/contest/1247/problem/C
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, p; cin >> n >> p;
+        // if (n == 1){
+        //     cout << -1 << nln;
+        //     return;
+        // }
+        // 2^x + p, where x is a non-negative integer
+        // int i = 10, ans = 0;
+        // while (n > 0){
+            // for (int i = 10; i >= 0; i--){
+            //     if (2^i + p <= n){
+            //         ans++;
+            //         n -= (2^i + p);
+            //     } 
+            // }
+            // int x = pow(2, i) + p;
+            // trace(x, i);
+        //     if (x > n) i--;
+        //     else if (x <= n) {
+        //         n -= (x);
+        //         ans++;
+        //     }
+        // }
+        // cout << ans << nln;
+        auto ans = [&]() -> int {
+            for (int i = 1; i <= 44; i++){
+                int sum = i, x = n - i * p;
+                // trace(sum, x);
+                if (x <= 0) continue;
+                int a[i];
+                fill(a, a + i, 1);
+                for (int j = i - 1; j >= 0; j--){
+                    while (sum + a[j] <= x){
+                        sum += a[j];
+                        a[j] *= 2;
+                    }
+                }
+                if (sum == x) return i;
+            }
+            return -1;
+        };
+        cout << ans() << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

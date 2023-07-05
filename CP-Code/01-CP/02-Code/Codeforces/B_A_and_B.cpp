@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,18 +375,43 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B. A and B
+            *Location: https://codeforces.com/contest/1278/problem/B
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
+        int a, b; cin >> a >> b;
         
+        // Naive Implementation.
+        // a -= b;
+        // if (a < 0) a = -a;
+        // int i = 1;
+        // while (a > 0 || a & 1){
+        //     // trace(a, i);
+        //     a -= i;
+        //     i++;
+        // }
+        // cout << i - 1 << nln;
+
+        // Formalize implementation
+        if (a == b){
+            cout << 0 << nln;
+            return;
+        }
+        int diff = abs(a - b);
+        auto okay = [&](int x, int diff) -> bool {
+            ll sum = x * 1LL * (x + 1) / 2;
+            if (sum < diff) return false;
+            return sum % 2 == diff % 2;
+        };
+        int cnt = 1;
+        while (!okay(cnt, diff)) cnt++;
+        cout << cnt << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

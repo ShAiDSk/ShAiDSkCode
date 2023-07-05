@@ -355,11 +355,8 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
-        // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
         };
@@ -378,12 +375,65 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: C. Equalize
+            *Location: https://codeforces.com/contest/1037/problem/C
         */ 
         /*/-------------------------------------------------------/*/
         int n; cin >> n;
-        
+        string a, b; cin >> a >> b;
+        // vector <char> a(n), b(n);
+        // for (auto &it : a) cin >> it;
+        // for (auto &it : b) cin >> it;
+        auto fun1 = [&](string &a, string &b) -> int {
+            int cnt = 0;
+            for (int i = 0; i < n - 1; i++){
+                if (a[i] != b[i] && a[i + 1] != b[i + 1]){
+                    swap(a[i], a[i + 1]);
+                    cnt++;
+                }
+                // trace(a);
+                if (a == b) return cnt;
+            }
+            return cnt;
+        };
+        auto fun2 = [&](string &a, string &b) -> int {
+            int cnt = 0;
+            for (int i = 0; i < n; i++){
+                if (a[i] != b[i]){
+                    if (a[i] == '1') a[i] = '0';
+                    else a[i] = '1';
+                    cnt++;
+                }
+                // trace(a);
+                if (a == b) return cnt;
+            }
+            return cnt;
+        };
+        auto fun3 = [&](string &a, string &b) -> int {
+            int cnt = 0;
+            for (int i = 0; i < n; i++){
+                if (i + 1 < n && a[i] != b[i] && a[i] != a[i + 1]){
+                    swap(a[i], a[i + 1]);
+                    i++;
+                    cnt++;
+                }
+                // if (a == b) return cnt;
+                else if (a[i] != b[i]){
+                    if (a[i] == '1') a[i] = '0';
+                    else a[i] = '1';
+                    // i++;
+                    cnt++;
+                }
+                // trace(a);
+            }
+            return cnt;
+        };
+        // trace(fun1(a, b));
+        // trace(fun1(a, b), fun2(a, b));
+        // cout << max(fun1(a, b), fun2(a, b)) << nln;
+        // if (!(n & 1)) cout << fun1(a, b);
+        // else cout << fun2(a, b);
+        cout << fun3(a, b) << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

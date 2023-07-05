@@ -78,9 +78,9 @@ struct sort_pair_second {
     }
 };
 /*/---------------------------Traces(Debug)----------------------/*/
-// #define TRACE
-// #define ShAiDSk TRACE
-// #ifdef ShAiDSk
+#define TRACE
+#define ShAiDSk TRACE
+#ifdef ShAiDSk
     #define trace(...) __f(#__VA_ARGS__, __VA_ARGS__)
     template <typename Arg1>
     void __f(const char* name, Arg1&& arg1){
@@ -95,16 +95,15 @@ struct sort_pair_second {
             if (cur == ',' && count_open == 0){
                const char* comma = names + k;
                cerr.write(names, len) << " : " << arg1 << " | ";
-            //    cout << " : " << arg1 << " | ";
                __f(comma + 1, args...);
                return;
             }
             len = (cur == ' ' ? len : k + 1);
          }
     }
-// #else
-    // #define trace(...) 1
-// #endif
+#else
+    #define trace(...) 1
+#endif
 /*/---------------------------------RNG--------------------------------/*/
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 inline int64_t random_long(long long l = LLONG_MIN,long long r = LLONG_MAX){
@@ -130,35 +129,26 @@ struct custom_hash { // Credits: https://codeforces.com/blog/entry/62393
     }
 };
 /*/---------------------------Defines && Typedefs----------------------/*/
-#define cerr(x) cout << #x << " : " << (x) << '\n'
-#define out(x) cout << #x << " : " << (x) << ' '
 const long double PI = acos(-1.0); // 3.14159265358979323846264338327950288419716939937510
 #define rall(x)  ((x).rbegin()),((x).rend())
-#define popcount(x) __builtin_popcountll(x)
 #define all(x)   ((x).begin()),((x).end())
 typedef long long ll;
 typedef unsigned long long ull; 
-typedef long double lld;
 const int INF = int(1e9);
 const ll INF64 = ll(1e18); // 9223372036854775807LL
 #define IntMax   2147483647 // 2147483647 = INT_MAX
 #define IntMin   -2147483647 // -2147483647 = INT_MIN
-// const int Modint = int(1e9) + 7; // 998244353
-const ll Modint = 998244353;
-#define ef       emplace_front
-#define eb       emplace_back
-#define pf       push_front
 #define pb       push_back
-#define ppf      pop_front
 #define ppb      pop_back
+typedef long double lld;
 const lld EPS = 1e-9;
-#define nln      '\n'
+#define nln  '\n'
 /*/---------------------------Helping Functions------------------------------/*/
 struct Help{
     template<typename dataType>
     void swap(dataType &a, dataType &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
     template<typename dataType>
-    void Cases(dataType t) {cout << "Case #" << t << ": ";}
+    void google(dataType t) {cout << "Case #" << t << ": ";}
     template<typename dataType>
     dataType lcm(dataType a, dataType b) {return ((a * b) / __gcd(a, b));}
     template<typename dataType>
@@ -273,25 +263,11 @@ struct Help{
     }
 };
 /*/-----------------------------Code begins----------------------------------/*/
-// Set OutPut:
-template <typename T> void cerrSet(set <T> s){
-    for (auto set = s.begin(); set != s.end(); set++){
-        if (set == s.begin()) out(*set);
-        else cout << *set << ' ';
-    }
-    cout << nln;
-}
-// Vector of array Output: It takes len and vector of array.
-template <typename T> void cerrVectArr(int n, vector <T> a[]){
-    for (int i = 0; i < n; i++){
-        for (auto &it : a[i]) cout << it << ' ';
-        cout << nln;
-    }
-}
+template <typename T> void out(T t){cerr << t << nln;}
 template <typename T, typename... Args>
-void arguments(T t, Args... args){
+void out(T t, Args... args){
     cerr << t << nln;
-    arguments(args...);
+    out(args...);
 }
 struct range{
     int l, r, ind;
@@ -330,58 +306,33 @@ struct Interator{
     }
 };
 /*/------------------------------Global-Defines-------------------------------/*/
+const int MODi = int(1e9) + 7;
 const int N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
 // int dp[N + 1];
-vector<int> dp(N + 1);
+vector<int> dp(N);
 // vector<vector<int>> dp(N, vector<int>(M + 1, 0));
-vector<int> edges[N + 1]; // Array of vector.
-vector<int> graph[N + 1];
-vector<int> visited(N, 0);
+vector <int> visited(N, 0);
+vector <int> graph[N]; // Array of vector.
+vector <int> edges[N];
+int ans;
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
     Help H; // Interator codeforces = Interator(5);
     int get(char c){
         // return (int(c) - 'a' + 1);
-        // return 'A' <= c and c <= 'Z'; // Check is_uppercase
-        // return '0' <= c and c <= '9'; // Check is_digit
         return (int(c) - '0');
     }
-    // dfs on Tree or Graph.
+    // dfs on Graph
     int dfs(int node, int parent){
         return 0;
     }
-    // Predicate function
-    bool check(void){
-        return false;
-    }
-    void Solve(int tc){
+    void Solve(){
         //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code
         // g++ a.cpp -o a.out; ./a.out < in > out; cat cerr.txt; echo "Local Output"; cat out;
-        // `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}` || `{`:âˆ€:x:âˆ€:`}`
-        // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
-        // `{`:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:x:ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬:`}` || `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}`
-        auto let = [&](int x) -> int {
+        // `{`:∀:x:∀:`}`
+        auto it = [&](int x){
             return (x > 0 ? 1 : -1);
         };
-        // Predicate function
-        auto Helper = [&]() -> void {
-            return;
-        };
-        // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> int {
-            return 0;
-        };
-        // Disjoint Set Union
-        auto dsu = [&]() -> void {
-            return;
-        };
-        /*/-------------------------------------------------------/*/
-        /*
-            !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
-        */ 
-        /*/-------------------------------------------------------/*/
         int n; cin >> n;
         
     }
@@ -389,9 +340,8 @@ struct Answer{
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
-    // while (tc--){Answer a; a.Solve();}
-    for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
+    int tc = 1; cin >> tc;
+    while (tc--){Answer a; a.Solve();}
 }
 /*/ MainFunction() /*/
 signed main(int argc, char **argv, char **envp){

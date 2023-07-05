@@ -139,7 +139,7 @@ struct Help{
     }
     void generate_Test_Cases(){
         srand(time(NULL));
-        int t = rand() % 2 + 1;
+        int t = rand() % 25 + 1;
         cout << t << newline;
         while (t--){
             int n = rand() % 10 + 1;
