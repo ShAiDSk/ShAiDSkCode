@@ -378,16 +378,34 @@ struct Answer{
             return;
         };
         // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
+        auto element = [&](const int x) -> void {cout << (x + 1) << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B. Yet Another Meme Problem
+            *Location: https://codeforces.com/contest/1288/problem/B
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int a, b; cin >> a >> b;
+        b++;
+        // string conc = to_string(a) + to_string(b);
+        // int conc = a + b;
+        // trace(conc);
+        // int cnt = 0;
+        // for (int i = 1; i <= a; i++){
+        //     for (int j = 1; j <= b; j++){
+        //         // if (to_string(i) + to_string(j) == conc) cnt++;
+        //         // trace(to_string(i) + to_string(j));
+        //         int x = i * j + i + j;
+        //         // trace(x);
+        //         if (x == conc) cnt++;
+        //         trace(cnt);
+        //     }
+        // }
+        // cout << cnt << nln;
+        // int l = to_string(b).length();
+        ll ans = 1LL * a * (to_string(b).length() - 1);
+        cout << ans << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

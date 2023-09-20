@@ -4,6 +4,17 @@
     // #pragma GCC target("avx,avx2,sse4.2,bmi,bmi2,popcnt,lzcnt") // Gives SIGILL on SPOJ
 #endif
 #include <bits/stdc++.h>
+
+/*/---------------------------if has include ----------------------/*/
+// #if __has_include(<atcoder/all>)
+//     #include <atcoder/all>
+//     using namespace atcoder;
+//     // using mint = modint998244353;
+//     // using mint = modint1000000007;
+//     // using mint = modint;
+// #endif
+/*/-------------------------------------------------/*/
+
 // https://atcoder.github.io/ac-library/production/document_en/ //! (AC(AtCoder) Library Document (production))
 // #include <atcoder/all>
 // https://atcoder.github.io/ac-library/document_en/modint.html //! (included in grader)
@@ -355,7 +366,7 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -386,14 +397,46 @@ struct Answer{
             *Location: 
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        vector <int> a(9), b(9);
+        for (int i = 0; i < 9; i++){
+            cin >> a[i];
+            b[i] = i;
+        }
+        int disappointed = 0, tot = 0;
+        bool okay = 0;
+        auto checking_disappointment = [&](int i, int j, int k) -> void {
+            vector <pair<int, int>> store(3);
+                              // index, value
+            store[0] = make_pair(b[i], a[i]);
+            store[1] = make_pair(b[j], a[j]);
+            store[2] = make_pair(b[k], a[k]);
+            sort(all(store));
+            if (store[0].second == store[1].second) okay = 1;
+        };
+        do {
+            okay = 0;
+            tot++;
+            checking_disappointment(0, 1, 2);
+            checking_disappointment(3, 4, 5);
+            checking_disappointment(6, 7, 8);
+            checking_disappointment(0, 3, 6);
+            checking_disappointment(1, 4, 7);
+            checking_disappointment(2, 5, 8);
+            checking_disappointment(0, 4, 8);
+            checking_disappointment(2, 4, 6);
+            if (okay == 1) disappointed++;
+        } while(next_permutation(all(b)));
+        // trace(disappointed, tot);
+        // cout << ((tot-disappointed)/tot) << nln;
+        double ans = tot - disappointed;
+        // trace(ans);
+        cout << double(ans/tot);
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

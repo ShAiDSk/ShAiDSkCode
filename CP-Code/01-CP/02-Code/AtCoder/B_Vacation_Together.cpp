@@ -355,7 +355,7 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -365,35 +365,30 @@ struct Answer{
             return;
         };
         // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> void {
-            cout << node << ' ';
-            for (auto &it : edges[node]){
-                if (it != parent){
-                    dfs(dfs, it, node);
-                }
-            }
+        auto dfs = [&](auto dfs, int node, int parent) -> int {
+            return 0;
         };
         // Disjoint Set Union
         auto dsu = [&]() -> void {
             return;
         };
-        // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B - Vacation Together 
+            *Location: https://atcoder.jp/contests/abc311/tasks/abc311_b
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, d; cin >> n >> d;
+        vector <string> s(n);
+        for (auto &it : s) cin >> it;
+        trace(s);
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

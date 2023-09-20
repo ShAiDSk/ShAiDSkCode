@@ -377,23 +377,32 @@ struct Answer{
         auto dsu = [&]() -> void {
             return;
         };
-        // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: A. New Year and Naming
+            *Location: https://codeforces.com/contest/1284/problem/A
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, m; cin >> n >> m;
+        vector <string> a(n), b(m);
+        for (auto &it : a) cin >> it;
+        for (auto &it : b) cin >> it;
+        int q; cin >> q;
+        while (q--){
+            int x; cin >> x;
+            x--;
+            int ind1 = x % n, ind2 = x % m;
+            // trace(ind1, ind2);
+            // ind1--, ind2--;
+            cout << a[ind1] << b[ind2] << nln;
+        }
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

@@ -33,20 +33,22 @@ def is_int(val):
             "YourInput": val,
             "Status": "Okay"
         }
-    else:
-        if val.is_integer():
-            result = {
-                "Number": True,
-                "YourInput": val,
-                "Status": "Okay"
-            }
-        else:
-            result = {
-                "Number": False,
-                "YourInput": val,
-                "Status": "Invalid Input"
-            }
     return jsonify(result)
+
+@app.route('/check/<string:val>')
+def invalid(val):
+        Invalid_result = {
+            "Number": False,
+            "YourInput": val,
+            "Status": "Invalid result"
+        }
+        return jsonify(Invalid_result)
+        # else:
+        #     result = {
+        #         "Number": False,
+        #         "YourInput": val,
+        #         "Status": "Invalid Input"
+        #     }
 
 # @app.route('/ans/<string:out>')
 # def out_put(out):

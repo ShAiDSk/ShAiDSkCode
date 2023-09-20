@@ -355,7 +355,7 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -382,18 +382,31 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B - Overlapping sheets 
+            *Location: https://atcoder.jp/contests/abc318/tasks/abc318_b
         */ 
         /*/-------------------------------------------------------/*/
         int n; cin >> n;
-        
+        // vector<vector<bool>> a(100, vector<bool>(100, 0));
+        bool gg[100][100] = {};
+        for (int i = 0; i < n; i++){
+            int a, b, c, d; cin >> a >> b >> c >> d;
+            for (int j = a; j < b; j++){
+                for (int k = c; k < d; k++) gg[j][k] = true;
+            }
+        }
+        // trace(a);
+        int ans = 0;
+        for (int j = 0; j < 100; j++){
+            for (int k = 0; k < 100; k++) if(gg[j][k]) ans++;
+        }
+        cout << ans << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

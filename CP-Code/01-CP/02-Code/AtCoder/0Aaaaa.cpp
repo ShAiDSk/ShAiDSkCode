@@ -4,6 +4,17 @@
     // #pragma GCC target("avx,avx2,sse4.2,bmi,bmi2,popcnt,lzcnt") // Gives SIGILL on SPOJ
 #endif
 #include <bits/stdc++.h>
+
+/*/---------------------------if has include ----------------------/*/
+// #if __has_include(<atcoder/all>)
+//     #include <atcoder/all>
+//     using namespace atcoder;
+//     // using mint = modint998244353;
+//     // using mint = modint1000000007;
+//     // using mint = modint;
+// #endif
+/*/-------------------------------------------------/*/
+
 // https://atcoder.github.io/ac-library/production/document_en/ //! (AC(AtCoder) Library Document (production))
 // #include <atcoder/all>
 // https://atcoder.github.io/ac-library/document_en/modint.html //! (included in grader)
@@ -365,13 +376,20 @@ struct Answer{
             return;
         };
         // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> int {
-            return 0;
+        auto dfs = [&](auto dfs, int node, int parent) -> void {
+            cout << node << ' ';
+            for (auto &it : edges[node]){
+                if (it != parent){
+                    dfs(dfs, it, node);
+                }
+            }
         };
         // Disjoint Set Union
         auto dsu = [&]() -> void {
             return;
         };
+        // for "for_each(all(a), element)" loop.
+        auto element = [&](const int x) -> void {cout << x << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
@@ -386,7 +404,7 @@ struct Answer{
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; // cin >> tc;
+    int tc = 1; cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

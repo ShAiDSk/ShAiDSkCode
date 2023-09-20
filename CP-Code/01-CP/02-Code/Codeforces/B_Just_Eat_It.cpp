@@ -377,17 +377,46 @@ struct Answer{
         auto dsu = [&]() -> void {
             return;
         };
-        // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B. Just Eat It!
+            *Location: https://codeforces.com/contest/1285/problem/B
         */ 
         /*/-------------------------------------------------------/*/
         int n; cin >> n;
-        
+        vector <int> a(n), prefSum(n);
+        for (auto &it : a) cin >> it;
+        // prefSum[0] = a[0];
+        // auto prefix_sum = [&]() -> void {
+        //     for (int i = 1; i < n; i++){
+        //         prefSum[i] = prefSum[i - 1] + a[i];
+        //     }
+        // };
+        // prefix_sum();
+        // trace(prefSum);
+        // bool okay = false;
+        // for (int i = 0; i < n - 1; i++){
+        //     if (prefSum[i + 1] <= prefSum[i]){
+        //         okay = false;
+        //         break;
+        //     }
+        // }
+        // if (sum > prefSum[n - 1]) okay = true;
+        auto okay = [&]() -> bool {
+            ll sum = 0;
+            for (auto it : a){
+                sum += it;
+                if (sum <= 0) return false;
+            }
+            sum = 0;
+            for (int i = n - 1; i >= 0; i--){
+                sum += a[i];
+                if (sum <= 0) return false;
+            }
+            return true;
+        };
+        cout << (okay()? "YES" : "NO") << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

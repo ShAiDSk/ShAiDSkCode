@@ -139,7 +139,7 @@ const long double PI = acos(-1.0); // 3.1415926535897932384626433832795028841971
 typedef long long ll;
 typedef unsigned long long ull; 
 typedef long double lld;
-const int INF = int(1e9);
+const int INF = int(1e9) + 99;
 const ll INF64 = ll(1e18); // 9223372036854775807LL
 #define IntMax   2147483647 // 2147483647 = INT_MAX
 #define IntMin   -2147483647 // -2147483647 = INT_MIN
@@ -330,13 +330,14 @@ struct Interator{
     }
 };
 /*/------------------------------Global-Defines-------------------------------/*/
-const int N = 1e5 + 10, M = 1e5 + 10, X = 1e5 + 10;
+const int N = int(2e5) + 99;
 // int dp[N + 1];
 vector<int> dp(N + 1);
 // vector<vector<int>> dp(N, vector<int>(M + 1, 0));
 vector<int> edges[N + 1]; // Array of vector.
 vector<int> graph[N + 1];
-vector<int> visited(N, 0);
+// vector<int> visited(N, 0);
+int arr[N][26];
 /*/--------------------------------------------------------------------------/*/
 struct Answer{
     Help H; // Interator codeforces = Interator(5);
@@ -351,11 +352,16 @@ struct Answer{
         return 0;
     }
     // Predicate function
-    bool check(void){
-        return false;
+    void check(int n, int m){
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < 26; j++){
+                cout << arr[i][j] << ' ';
+            }
+        }
+        cout << nln;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder.cpp
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -365,11 +371,11 @@ struct Answer{
             return;
         };
         // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> void {
+        auto dfs_on_tree = [&](auto dfs_on_tree, int node, int parent) -> void {
             cout << node << ' ';
             for (auto &it : edges[node]){
                 if (it != parent){
-                    dfs(dfs, it, node);
+                    dfs(dfs_on_tree, it, node);
                 }
             }
         };
@@ -382,18 +388,37 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: C - Standings 
+            *Location: https://atcoder.jp/contests/abc308/tasks/abc308_c
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        ll n; cin >> n;
+        vector<pair<lld, ll>> pos;
+        for (int i = 0; i < n; i++){
+            lld a, b; cin >> a >> b;
+            lld res = ((a*1.0) / (a + b) * 1.0);
+            // trace(res);
+            pos.eb(res, i);
+        }
+        auto comp = [&](pair<lld, ll> ele1, pair<lld, ll> ele2) -> bool {
+            if (ele1.first != ele2.first) return ele1.first > ele2.first;
+            return ele1.second < ele2.second;
+        };
+        sort(all(pos), comp);
+        // map<lld, ll>::reverse_iterator it;
+        // for (it = pos.rbegin(); it != pos.rend(); it++) 
+        //     cout << (it->second + 1) << ' ';
+        for (auto &it : pos){
+            cout << (it.second + 1) << ' ';
+        }
+        // trace(pos);
+        // cout << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

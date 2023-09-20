@@ -355,7 +355,7 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -382,12 +382,18 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B - Measure 
+            *Location: https://atcoder.jp/contests/abc319/tasks/abc319_b
         */ 
         /*/-------------------------------------------------------/*/
         int n; cin >> n;
-        
+        vector <int> a;
+        for (int i = 1; i <= 9; i++){
+            if (n % i == 0) a.pb(i);
+        }
+        for (int i = 0; i <= n; i++){
+            
+        }
     }
 };
 /*/--------------------------------------------------------------------------/*/

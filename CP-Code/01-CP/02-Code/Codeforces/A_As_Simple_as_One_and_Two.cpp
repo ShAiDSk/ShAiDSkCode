@@ -378,16 +378,58 @@ struct Answer{
             return;
         };
         // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
+        auto element = [&](const int x) -> void {cout << (x + 1) << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: A. As Simple as One and Two
+            *Location: https://codeforces.com/contest/1276/problem/A
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        string s; cin >> s;
+        // vector <int> ans;
+        // for (int i = 0; i < s.length(); i++){
+        //     if (s[i] == 'o') ans.pb(i + 1);
+        // }
+        // // trace(ans);
+        // cout << ans.size() << nln;
+        // for_each(all(ans), element);
+        // cout << nln;
+
+        // twone, one, two
+        //   o     n    w  -> twne, oe, to -> after delete.
+        // vector <string> t{"twone", "one", "two"};
+        vector <int> ans;
+        // int index = 0;
+        // while((index = s.find(one, index)) != string :: npos){
+        //     // cout << index + 2 << ' ';
+        //     s[index + one.length()/2] = '?';
+        //     ans.pb(index + one.length()/2);
+        //     // index += one.length();
+        // }
+        // index = 0;
+        // while((index = s.find(two, index)) != string :: npos){
+        //     // cout << index + 2 << ' ';
+        //     s[index + two.length()/2] = '?';
+        //     ans.pb(index + two.length()/2);
+        //     // index += two.length();
+        // }
+        // index = 0;
+        // while((index = s.find(twone, index)) != string :: npos){
+        //     // cout << index + 2 << ' ';
+        //     s[index + twone.length()/2] = '?';
+        //     ans.pb(index + twone.length()/2);
+        //     // index += twone.length();
+        // }
+        for (string it : {"twone", "one", "two"}){
+            for (size_t pos = 0; (pos = s.find(it, pos)) != string::npos;){
+                s[pos + it.length()/2] = '?';
+                ans.pb(pos + it.length()/2);
+            }
+        }
+        cout << ans.size() << nln;
+        for_each(all(ans), element);
+        cout << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

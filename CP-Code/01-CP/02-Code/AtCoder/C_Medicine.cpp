@@ -355,7 +355,7 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -382,18 +382,39 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: C - Medicine 
+            *Location: https://atcoder.jp/contests/abc309/tasks/abc309_c
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, k; cin >> n >> k;
+        vector<pair<int, int>> a(n);
+        for (auto &it : a) cin >> it.first >> it.second;
+        // trace(a); // a : {(6, 3), (2, 5), (1, 9), (4, 2)}
+        ll sum = 0;
+        for (auto it : a){
+            sum += it.second;
+        }
+        // trace(sum);
+        sort(all(a));
+        // trace(a);
+        if (sum <= k) {cout << 1 << nln; return;}
+        for (int i = 0; i < n; i++){
+            // trace(k - a[i].second);
+            // if (k - a[i].second < 0) break;
+            // k -= a[i].second;
+            if (sum <= k){
+                cout << a[i - 1].first + 1 << nln;
+                return;
+            }
+            sum -= a[i].second;
+        }
+        cout << a.back().first + 1 << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }

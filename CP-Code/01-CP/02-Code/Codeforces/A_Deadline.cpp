@@ -378,16 +378,20 @@ struct Answer{
             return;
         };
         // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
+        auto element = [&](const int x) -> void {cout << (x + 1) << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: A. Deadline
+            *Location: https://codeforces.com/contest/1288/problem/A
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        int n, d; cin >> n >> d;
+        int i, range = (int)(sqrt(d)) + 10;
+        for (i = 0; i < range; i++){
+            if (i + (d + i) / (i + 1) <= n) break;
+        }
+        cout << (i < range? "Yes" : "No") << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

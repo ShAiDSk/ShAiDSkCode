@@ -365,20 +365,13 @@ struct Answer{
             return;
         };
         // dfs on Tree or Graph.
-        auto dfs = [&](auto dfs, int node, int parent) -> void {
-            cout << node << ' ';
-            for (auto &it : edges[node]){
-                if (it != parent){
-                    dfs(dfs, it, node);
-                }
-            }
+        auto dfs = [&](auto dfs, int node, int parent) -> int {
+            return 0;
         };
         // Disjoint Set Union
         auto dsu = [&]() -> void {
             return;
         };
-        // for "for_each(all(a), element)" loop.
-        auto element = [&](const int x) -> void {cout << x << ' ';};
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
