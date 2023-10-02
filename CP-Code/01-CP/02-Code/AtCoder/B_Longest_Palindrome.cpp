@@ -393,44 +393,51 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: D - Minimum Width
-            *Location: https://atcoder.jp/contests/abc319/tasks/abc319_d
+            ?Problem_name: B - Longest Palindrome 
+            *Location: https://atcoder.jp/contests/abc320/tasks/abc320_b
         */ 
         /*/-------------------------------------------------------/*/
-        ll n, m; cin >> n >> m;
-        vector <ll> a(n);
-        for (int i = 0; i < n; i++){
-            cin >> a[i];
-            ++a[i];
-        }
-        // input 1
-        // 13 3
-        // 9 5 2 7 1 8 8 2 1 5 2 3 6
-        // trace(a); // a : {10, 6, 3, 8, 2, 9, 9, 3, 2, 6, 3, 4, 7}
-        ll lower = ranges::max(a) - 1;
-        // trace(lower); // lower : 9
-        ll upper = reduce(all(a));
-        // trace(upper); // upper : 72
-        auto check = [&](ll mid) -> ll {
-            ll row = 1;
-            ll len = 0;
-            for (int i = 0; i < n; i++){
-                len += a[i];
-                if (len > mid) {
-                    row++;
-                    len = a[i];
-                }
+        string s; cin >> s;
+        int ans = IntMin, n = s.length();
+        // cout << (4 - 0 + 1) << nln;
+        // int i = 0, j = n - 1;
+        auto itt = [&](int i, int j) -> bool {
+            while (i <= j){
+                if (s[i] != s[j]) return false;
+                i++, j--;
             }
-            return row;
+            return true;
         };
-        while (lower + 1 < upper){
-            ll mid = (lower + upper) / 2;
-            if (check(mid) > m){
-                lower = mid;
+        for (int i = 0; i < n; i++){
+            for (int j = i; j < n; j++){
+                if (itt(i, j)) ans = max(ans, j - i + 1);
             }
-            else upper = mid;
         }
-        cout << upper - 1 << nln;
+        cout << ans << nln;
+        // while (i <= j){
+        //     if (s[i] == s[j]){
+        //         int temp = j - i + 1;
+        //         // trace(temp);
+        //         i++, j--;
+        //         ans = max(ans, temp);
+        //     }
+        //     else if (s[i] == s[j - 1]) {
+        //         ans = 0;
+        //         // i++;
+        //         j--;
+        //     }
+        //     else if (s[i + 1] == s[j]) {
+        //         ans = 0;
+        //         i++;
+        //         // j--;
+        //     }
+        //     else {
+        //         ans = 0;
+        //         i++, j--;
+        //     }
+        //     // trace(i, j, ans);
+        // }
+        // cout << (ans? ans : 1) << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

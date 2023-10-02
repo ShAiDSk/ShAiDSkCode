@@ -166,23 +166,23 @@ const lld EPS = 1e-9;
 #define nln      '\n'
 /*/---------------------------Helping Functions------------------------------/*/
 struct Help{
-    template<typename dataType>
-    void swap(dataType &a, dataType &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
-    template<typename dataType>
-    void Cases(dataType t) {cout << "Case #" << t << ": ";}
-    template<typename dataType>
-    dataType lcm(dataType a, dataType b) {return ((a * b) / __gcd(a, b));}
-    template<typename dataType>
-    bool revsort(dataType a, dataType b) {return a > b;}
+    template<typename T>
+    void swap(T &a, T &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
+    template<typename T>
+    void Cases(T t) {cout << "Case #" << t << ": ";}
+    template<typename T>
+    T lcm(T a, T b) {return ((a * b) / __gcd(a, b));}
+    template<typename T>
+    bool revsort(T a, T b) {return a > b;}
     // Sieve of Eratosthenes to check is prime or not
-    template<typename dataType>
-    vector<dataType> sieve(dataType n){
-        dataType*arr = new dataType[n + 1]();
-        vector<dataType> vect;
-        for (dataType i = 2; i <= n; i++){
+    template<typename T>
+    vector<T> sieve(T n){
+        T*arr = new T[n + 1]();
+        vector<T> vect;
+        for (T i = 2; i <= n; i++){
             if (arr[i] == 0){
                 vect.push_back(i);
-                for (dataType j = 2 * i; j <= n; j += i){
+                for (T j = 2 * i; j <= n; j += i){
                     arr[j] = 1;
                 }
             }
@@ -190,8 +190,8 @@ struct Help{
         return vect;
     }
     // Decimal to Binary Converter
-    template<typename dataType>
-    string to_binary(dataType n){
+    template<typename T>
+    string to_binary(T n){
         string s;
         while (n > 0){
             // if (n % 2) s += '1';
@@ -203,45 +203,45 @@ struct Help{
         return s;
     }
     // Power of a number.
-    template<typename dataType>
-    dataType power(dataType base, dataType pow){
+    template<typename T>
+    T power(T base, T pow){
         if (pow == 0) return 1;
         else if (base == 1) return base;
         else return base * power(base, pow - 1);
     }
     // Binary Exponentiation
-    template<typename dataType>
-    dataType binExpo(dataType a, dataType b){
+    template<typename T>
+    T binExpo(T a, T b){
         if (b == 0) return 1;
-        dataType x = binExpo(a, b/2);
+        T x = binExpo(a, b/2);
         if (b % 2 == 0) return (x * x);
         return (x * x * a);
     }
     // getUnique Number.
-    template<typename dataType>
-    void getUnique(vector <dataType> &a) {
+    template<typename T>
+    void getUnique(vector <T> &a) {
         sort(all(a));
         a.erase(unique(all(a)), a.end());
     }
-    template<typename dataType>
-    dataType x(dataType n, dataType digit){
+    template<typename T>
+    T x(T n, T digit){
         if (n == 1) return digit;
         digit *= digit;
         return x(n - 1, digit);
     }
-    template<typename dataType>
-    dataType gcd(dataType a, dataType b){
-        dataType temp = a + b;
+    template<typename T>
+    T gcd(T a, T b){
+        T temp = a + b;
         a = (a > b)? a : b;
         b = temp - a;
         if (a % b == 0) return b;
         return gcd(b, a % b);
     }
     /** Computes a^b modulo MOD in O(log MOD) time.**/
-    template<typename dataType>
-    dataType expo(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T expo(T a, T b, T mod){
         a %= mod;
-        dataType res = 1;
+        T res = 1;
         while (b > 0){
             if (b & 1) res = (res * a) % mod;
             a = (a * a) % mod;
@@ -249,36 +249,36 @@ struct Help{
         }
         return res;
     }
-    template<typename dataType>
-    dataType mminvprime(dataType a, dataType b){
+    template<typename T>
+    T mminvprime(T a, T b){
         return expo(a, b - 2, b);
     }
-    template<typename dataType>
-    dataType mod_add(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_add(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (((a + b) % mod) + mod) % mod;
     }
-    template<typename dataType>
-    dataType mod_mul(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_mul(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (((a * b) % mod) + mod) % mod;
     }
-    template<typename dataType>
-    dataType mod_sub(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_sub(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (((a - b) % mod) + mod) % mod;
     }
-    template<typename dataType>
-    dataType mod_div(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_div(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (mod_mul(a, mminvprime(b, mod), mod) + mod) % mod;
     } //only for prime m
-    template<typename dataType>
-    dataType binomial(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T binomial(T a, T b, T mod){
         if (a == 0 || b == a) return 1;
         return(binomial(a - 1, b - 1, mod) + binomial(a - 1, b, mod)) % mod;
     }
@@ -393,44 +393,39 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: D - Minimum Width
-            *Location: https://atcoder.jp/contests/abc319/tasks/abc319_d
+            ?Problem_name: C - Slot Strategy 
+            *Location: https://atcoder.jp/contests/abc252/tasks/abc252_c
         */ 
         /*/-------------------------------------------------------/*/
-        ll n, m; cin >> n >> m;
-        vector <ll> a(n);
+        int n; cin >> n;
+        vector<vector<int>> cnt(10, vector<int>(10, 0));
+        // trace(cnt);
+        vector <string> s(n);
+        for (auto &it : s) cin >> it;
         for (int i = 0; i < n; i++){
-            cin >> a[i];
-            ++a[i];
-        }
-        // input 1
-        // 13 3
-        // 9 5 2 7 1 8 8 2 1 5 2 3 6
-        // trace(a); // a : {10, 6, 3, 8, 2, 9, 9, 3, 2, 6, 3, 4, 7}
-        ll lower = ranges::max(a) - 1;
-        // trace(lower); // lower : 9
-        ll upper = reduce(all(a));
-        // trace(upper); // upper : 72
-        auto check = [&](ll mid) -> ll {
-            ll row = 1;
-            ll len = 0;
-            for (int i = 0; i < n; i++){
-                len += a[i];
-                if (len > mid) {
-                    row++;
-                    len = a[i];
-                }
+            // int c = ((i % 10) + 1);
+            // trace(c);
+            for (int j = 0; j < 10; j++){
+                cnt[(s[i][j] - '0')][j]++;
             }
-            return row;
-        };
-        while (lower + 1 < upper){
-            ll mid = (lower + upper) / 2;
-            if (check(mid) > m){
-                lower = mid;
-            }
-            else upper = mid;
         }
-        cout << upper - 1 << nln;
+        // trace(cnt);
+        // cnt : {{0, 0, 0, 0, 0, 0, 2, 1, 0, 0}, {1, 1, 0, 0, 0, 0, 0, 1, 0, 0}, {1, 0, 1, 0, 0, 0, 0, 0, 0, 1}, {0, 1, 1, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0, 1, 0}, {0, 0, 0, 1, 0, 1, 0, 0, 1, 0}, {0, 0, 0, 0, 1, 1, 0, 0, 1, 0}, {0, 0, 0, 1, 1, 0, 0, 0, 0, 1}, {1, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 1, 0, 0, 0, 1, 0, 0, 0, 1}}
+        int ans = 1000, maxi = 0;
+        for (int i = 0; i < 10; i++){
+            // int c = ((i % 10) + 1);
+            // trace(c);
+            maxi = 0;
+            for (int j = 0; j < 10; j++){
+                maxi = max(maxi, 10 * (cnt[i][j] - 1) + j);
+            }
+            ans = min(ans, maxi);
+        }
+        cout << ans << nln;
+        
+        // see below code for better understanding
+        // https://atcoder.jp/contests/abc252/submissions/45799655
+        // https://atcoder.jp/contests/abc252/submissions/45788376
     }
 };
 /*/--------------------------------------------------------------------------/*/

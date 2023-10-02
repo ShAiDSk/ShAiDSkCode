@@ -382,8 +382,18 @@ struct Answer{
             *Location: 
         */ 
         /*/-------------------------------------------------------/*/
-        int n; cin >> n;
-        
+        // int n; cin >> n;
+        // vector <int> a(n);
+        // for (auto &it : a) cin >> it;
+        // trace(a);
+        int a, b; cin >> a >> b;
+        auto swap_ = [&](int &a, int &b) -> void {
+            a ^= b;
+            b ^= a;
+            a ^= b;
+        };
+        swap_(a, b);
+        cout << a << " " << b << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/
