@@ -393,13 +393,31 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: D - Set Menu
+            *Location: https://atcoder.jp/contests/abc321/tasks/abc321_d
         */ 
         /*/-------------------------------------------------------/*/
         // its.shaidsk.coder
-        int n; cin >> n;
-        
+        int n, m, p; cin >> n >> m >> p;
+        vector <int> a(n), b(m);
+        for (auto &it : a) cin >> it;
+        for (auto &it : b) cin >> it;
+        sort(all(b));
+        // Cumulative sum
+        vector <ll> b_sum(m + 1);
+        for (int i = 0; i < m; i++){
+            b_sum[i + 1] = b_sum[i] + b[i];
+        }
+        // trace(b_sum); // b_sum : {0, 1, 7}
+        ll ans = 0;
+        for (auto it : a){
+            int lb = lower_bound(all(b), p - it) - b.begin();
+            // trace(lb);
+            ans += (ll) it * lb;
+            ans += b_sum[lb];
+            ans += (ll) p * (m - lb);
+        }
+        cout << ans << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

@@ -393,12 +393,17 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B - Prefix and Suffix 
+            *Location: https://atcoder.jp/contests/abc322/tasks/abc322_b
         */ 
         /*/-------------------------------------------------------/*/
         // its.shaidsk.coder
-        int n; cin >> n;
+        int n, m; cin >> n >> m;
+        string s, t; cin >> s >> t;
+        // vector <char> s(n), t(m)
+        for (auto &it : s) cin << it;
+        for (auto &it : t) cin >> it;
+        for (int i - )
         
     }
 };
