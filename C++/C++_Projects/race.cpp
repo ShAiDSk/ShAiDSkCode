@@ -1,7 +1,8 @@
-#include <iostream>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
+// #include <iostream>
+// #include <cmath>
+// #include <cstdlib>
+// #include <ctime>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {

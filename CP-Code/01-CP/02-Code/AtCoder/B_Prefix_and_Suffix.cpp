@@ -401,10 +401,23 @@ struct Answer{
         int n, m; cin >> n >> m;
         string s, t; cin >> s >> t;
         // vector <char> s(n), t(m)
-        for (auto &it : s) cin << it;
-        for (auto &it : t) cin >> it;
-        for (int i - )
-        
+        // for (auto &it : s) cin << it;
+        // for (auto &it : t) cin >> it;
+        bool prefix = true;
+        for (int i = 0; i < n; i++){
+            if (s[i] != t[i]) {prefix = false; break;}
+        }
+        bool suffix = true;
+        for (int i = 0; i < n; i++){
+            if(s[i] != t[m - n + i]){
+                suffix = false;
+                break;
+            }
+        }
+        if (prefix){
+            cout << (suffix? 0 : 1) << nln;
+        }
+        else cout << (suffix? 2 : 3) << nln;
     }
 };
 /*/--------------------------------------------------------------------------/*/

@@ -4,6 +4,17 @@
     // #pragma GCC target("avx,avx2,sse4.2,bmi,bmi2,popcnt,lzcnt") // Gives SIGILL on SPOJ
 #endif
 #include <bits/stdc++.h>
+
+/*/---------------------------if has include ----------------------/*/
+// #if __has_include(<atcoder/all>)
+//     #include <atcoder/all>
+//     using namespace atcoder;
+//     // using mint = modint998244353;
+//     // using mint = modint1000000007;
+//     // using mint = modint;
+// #endif
+/*/-------------------------------------------------/*/
+
 // https://atcoder.github.io/ac-library/production/document_en/ //! (AC(AtCoder) Library Document (production))
 // #include <atcoder/all>
 // https://atcoder.github.io/ac-library/document_en/modint.html //! (included in grader)
@@ -72,7 +83,7 @@ struct comp{
 // Sort by second element
 template <class T1, class T2, class Pred = std::less<T2> >
 struct sort_pair_second {
-    bool operator()(const std::pair<T1,T2>&left, const std::pair<T1,T2>&right) {
+    bool operator()(const pair<T1,T2> &left, const pair<T1,T2> &right) {
         Pred p;
         return p(left.second, right.second);
     }
@@ -155,23 +166,23 @@ const lld EPS = 1e-9;
 #define nln      '\n'
 /*/---------------------------Helping Functions------------------------------/*/
 struct Help{
-    template<typename dataType>
-    void swap(dataType &a, dataType &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
-    template<typename dataType>
-    void Cases(dataType t) {cout << "Case #" << t << ": ";}
-    template<typename dataType>
-    dataType lcm(dataType a, dataType b) {return ((a * b) / __gcd(a, b));}
-    template<typename dataType>
-    bool revsort(dataType a, dataType b) {return a > b;}
+    template<typename T>
+    void swap(T &a, T &b) {a = (a ^ b); b = (a ^ b); a = (a ^ b);}
+    template<typename T>
+    void Cases(T t) {cout << "Case #" << t << ": ";}
+    template<typename T>
+    T lcm(T a, T b) {return ((a * b) / __gcd(a, b));}
+    template<typename T>
+    bool revsort(T a, T b) {return a > b;}
     // Sieve of Eratosthenes to check is prime or not
-    template<typename dataType>
-    vector<dataType> sieve(dataType n){
-        dataType*arr = new dataType[n + 1]();
-        vector<dataType> vect;
-        for (dataType i = 2; i <= n; i++){
+    template<typename T>
+    vector<T> sieve(T n){
+        T*arr = new T[n + 1]();
+        vector<T> vect;
+        for (T i = 2; i <= n; i++){
             if (arr[i] == 0){
                 vect.push_back(i);
-                for (dataType j = 2 * i; j <= n; j += i){
+                for (T j = 2 * i; j <= n; j += i){
                     arr[j] = 1;
                 }
             }
@@ -179,8 +190,8 @@ struct Help{
         return vect;
     }
     // Decimal to Binary Converter
-    template<typename dataType>
-    string to_binary(dataType n){
+    template<typename T>
+    string to_binary(T n){
         string s;
         while (n > 0){
             // if (n % 2) s += '1';
@@ -192,45 +203,45 @@ struct Help{
         return s;
     }
     // Power of a number.
-    template<typename dataType>
-    dataType power(dataType base, dataType pow){
+    template<typename T>
+    T power(T base, T pow){
         if (pow == 0) return 1;
         else if (base == 1) return base;
         else return base * power(base, pow - 1);
     }
     // Binary Exponentiation
-    template<typename dataType>
-    dataType binExpo(dataType a, dataType b){
+    template<typename T>
+    T binExpo(T a, T b){
         if (b == 0) return 1;
-        dataType x = binExpo(a, b/2);
+        T x = binExpo(a, b/2);
         if (b % 2 == 0) return (x * x);
         return (x * x * a);
     }
     // getUnique Number.
-    template<typename dataType>
-    void getUnique(vector <dataType> &a) {
+    template<typename T>
+    void getUnique(vector <T> &a) {
         sort(all(a));
         a.erase(unique(all(a)), a.end());
     }
-    template<typename dataType>
-    dataType x(dataType n, dataType digit){
+    template<typename T>
+    T x(T n, T digit){
         if (n == 1) return digit;
         digit *= digit;
         return x(n - 1, digit);
     }
-    template<typename dataType>
-    dataType gcd(dataType a, dataType b){
-        dataType temp = a + b;
+    template<typename T>
+    T gcd(T a, T b){
+        T temp = a + b;
         a = (a > b)? a : b;
         b = temp - a;
         if (a % b == 0) return b;
         return gcd(b, a % b);
     }
     /** Computes a^b modulo MOD in O(log MOD) time.**/
-    template<typename dataType>
-    dataType expo(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T expo(T a, T b, T mod){
         a %= mod;
-        dataType res = 1;
+        T res = 1;
         while (b > 0){
             if (b & 1) res = (res * a) % mod;
             a = (a * a) % mod;
@@ -238,36 +249,36 @@ struct Help{
         }
         return res;
     }
-    template<typename dataType>
-    dataType mminvprime(dataType a, dataType b){
+    template<typename T>
+    T mminvprime(T a, T b){
         return expo(a, b - 2, b);
     }
-    template<typename dataType>
-    dataType mod_add(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_add(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (((a + b) % mod) + mod) % mod;
     }
-    template<typename dataType>
-    dataType mod_mul(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_mul(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (((a * b) % mod) + mod) % mod;
     }
-    template<typename dataType>
-    dataType mod_sub(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_sub(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (((a - b) % mod) + mod) % mod;
     }
-    template<typename dataType>
-    dataType mod_div(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T mod_div(T a, T b, T mod){
         a = a % mod;
         b = b % mod;
         return (mod_mul(a, mminvprime(b, mod), mod) + mod) % mod;
     } //only for prime m
-    template<typename dataType>
-    dataType binomial(dataType a, dataType b, dataType mod){
+    template<typename T>
+    T binomial(T a, T b, T mod){
         if (a == 0 || b == a) return 1;
         return(binomial(a - 1, b - 1, mod) + binomial(a - 1, b, mod)) % mod;
     }
@@ -355,7 +366,7 @@ struct Answer{
         return false;
     }
     void Solve(int tc){
-        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/Codeforces
+        //* /mnt/c/Users/91956/ShAiDSkCode/CP-Code/01-CP/02-Code/AtCoder
         // `{`:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:x:ÃƒÂ¢Ã‹â€ Ã¢â€šÂ¬:`}` || `{`:Ã¢Ë†â‚¬:x:Ã¢Ë†â‚¬:`}`
         auto let = [&](int x) -> int {
             return (x > 0 ? 1 : -1);
@@ -382,27 +393,41 @@ struct Answer{
         /*/-------------------------------------------------------/*/
         /*
             !Author: ShAiDSk
-            ?Problem_name: 
-            *Location: 
+            ?Problem_name: B - Round-Robin Tournament 
+            *Location: https://atcoder.jp/contests/abc323/tasks/abc323_b
         */ 
         /*/-------------------------------------------------------/*/
+        // its.shaidsk.coder
         int n; cin >> n;
-        vector <int> a(n);
+        vector<pair<int, int>> wins(n);
         for (int i = 0; i < n; i++){
-            int ind, val; cin >> ind >> val;
-            a[ind].pb(x);
+            string s; cin >> s;
+            int win = 0;
+            for (int j = 0; j < s.size(); j++){
+                if (i != j && s[j] == 'o') win++;
+            }
+            wins[i] = make_pair(win, i + 1);
         }
-        // for (auto it : a) cout << it << ' ';
+        // trace(wins);
+        // wins : {(3, 1), (1, 2), (4, 3), (5, 4), (3, 5), (0, 6), (5, 7), (0, 0)}
+        auto cmp = [](auto a, auto b) {
+            if(a.first != b.first) return a.first > b.first;
+            return a.second < b.second;
+        };
+        sort(all(wins), cmp);
+        // trace(wins);
+        // wins : {(5, 7), (5, 4), (4, 3), (3, 5), (3, 1), (1, 2), (0, 6), (0, 0)}
         for (int i = 0; i < n; i++){
-            cout << i << ": " << a[i] << nln;
+            cout << (wins[i].second) << ' ';
         }
-        cout << nln;
+        // for (auto it : wins) cout << it.second << ' ';
+        // for (auto a, b : wins) cout << b << ' ';
     }
 };
 /*/--------------------------------------------------------------------------/*/
 /*/ ShAiDSk_Solve() Definition /*/
 void ShAiDSk_Solve(){
-    int tc = 1; cin >> tc;
+    int tc = 1; // cin >> tc;
     // while (tc--){Answer a; a.Solve();}
     for (int i = 1; i <= tc; i++){Answer a; a.Solve(i);}
 }
